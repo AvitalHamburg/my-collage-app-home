@@ -148,6 +148,8 @@ margin-bottom: 2vh;
 font-family: "Heebo";
 font-size: 1.2em;
 text-align: right;
+color: rgb(89,89,89);
+
 
 
 }

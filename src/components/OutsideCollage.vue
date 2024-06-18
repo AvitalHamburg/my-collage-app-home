@@ -1,84 +1,59 @@
 <template>
   <div id="page">
-    <div v-if="!state.showQuestion">
-      <h1 id="page-header">קשרי חוץ</h1>
-      <img :src="nextBtn" id="next-btn" @click="GoQuestion">
-      <div id="scroll-text">
-        <p class="main-text" ref="text1" :class="{ hidden: state.isText1Hidden }">{{ emergencyText }}</p>
-        <img class="image-content" :src="collageImg4" alt="Collage Image" ref="image1" :class="{ hidden: state.isImage1Hidden }">
-        <p class="image-description" ref="text2" :class="{ hidden: state.isText2Hidden }">{{ emergencyText2 }}</p>
-        <img class="image-content" :src="ImgCollage4" alt="Collage Image" ref="image2" :class="{ hidden: state.isImage2Hidden }">
-      </div>
-    </div>
-    <AmericanQ v-if="state.showQuestion" :pageHeader="pageHead" :questions="questionArray" :answers1="firstAns" :answers2="seconedAns"
-    :answers3="thirdAns" :correctAnswers="correctAnsArr" :explantions="explainArr" @go-next="MenuBack"></AmericanQ>
-  </div>
-</template>
+   <div id="scroll-text">
+    <p class="titles-gray" ref="text1"> קש"ח - קשרי חוץ  
+    </p>
+    <p class="blue-text">אנחנו לגמרי בינלאומיים!</p>
+    <p class="simple-text" ref="text2">מעת לעת אנחנו מארחים משלחות ובעלי תפקידים בממשלות וצבאות מרחבי העולם, הבאים ארצה ללמוד על חוסנה של מדינת ישראל וניהול העורף בשעת חירום.
+    </p>
+    <p class="simple-text">כבר יצא לנו להיפגש עם שישה גנרלים מספרד, ראשת FEMA (רח"ל האמריקאית), נציגים בכירים ממשטרת שבדיה, קהילות יהודיות מרחבי העולם וגורמים נוספים, שבאים מכל היבשות לשמוע על קידום המוכנות ברשויות המקומיות, ההכשרות והאימונים - מכיתה י' ועד משרדי הממשלה. 
+    </p>
+    <p class="blue-text"> עם איזה מדינות נפגשנו?</p>
+      <p class="simple-text">שימו לב לדגלים בתנועה, זהו את הדגלים וכמות המדינות ואולי אפילו תרשמו לכם בצד -</p>
+      <!-- להוסיף כאן סרטון דגלים -->
+      <p class="simple-text">בטוח ספרת טוב? (זאת לגמרי שאלה שנשאל בבוחן סיום)</p>
 
+
+    <img :src="nextBtn" id="next-btn" @click="backToMenu" >
+
+  </div>
+  </div>
+  </template>
 
 <script setup>
-import AmericanQ from './AmericanQ.vue';
+import { reactive, onMounted, getCurrentInstance ,defineEmits, ref} from 'vue';
 import nextBtn from "../assets/imgs/nextBtn.png";
-import { reactive, defineEmits, ref, onMounted, onBeforeUnmount } from 'vue';
-import collageImg4 from '../assets/imgs/collageImg4.png';
-import ImgCollage4 from '../assets/imgs/4ImgCollage.jpg'
+const emit = defineEmits(['go-menu']);
 
-const emergencyText = `אנחנו לגמרי בינלאומיים!
-ומארחים משלחות בעלי תפקידים בממשלות וצבאות מרחבי העולם, שרוצים ללמוד על חוסנה של מדינת ישראל והתמודדות מיטבית בשעת חירום.`;
-const emergencyText2 = `כבר יצא לנו להיפגש עם ראשת FEMA )רח"ל האמריקאית), מב"ל הספרדית, נציגים ממשטרת שבדיה, קהילות יהודיות מרחבי העולם וגורמים נוספים, שבאים מכל היבשות לשמוע על קידום המוכנות ברשויות המקומיות, ההכשרות והאימונים - מכיתה י' ועד משרדי הממשלה.`;
 
-const emit = defineEmits(['menu-back']);
-
-const state = reactive({
-  showPayment: false,
-  showQuestion: false,
-});
-
-const pageHead = "קשרי חוץ";
-const questionArray = ['מי היה אצלנו?'];
-const firstAns = ['שוודיה , ארה"ב , ספרד'];
-const seconedAns = ['אנגליה , ארה"ב , יוון'];
-const thirdAns = ['איטליה , ארה"ב'];
-const correctAnsArr = ['שוודיה , ארה"ב , ספרד'];
-const explainArr = ['המדינות שביקרו אצלנו הן : ארה"ב ספרד ושוודיה'];
-
-const GoQuestion = () => {
-  state.showQuestion = true;
-};
-
-const MenuBack = () => {
-  emit('menu-back');
-};
+const backToMenu = () =>{
+    emit('go-menu');
+}
 
 const text1 = ref(null);
 const text2 = ref(null);
-const image1 = ref(null);
-const image2 = ref(null);
 
 const handleIntersect = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
-      observer.unobserve(entry.target);
-    }
-  });
+entries.forEach(entry => {
+  if (entry.isIntersecting) {
+    entry.target.classList.add('animate');
+    observer.unobserve(entry.target);
+  }
+});
 };
 
 onMounted(() => {
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5,
-  };
-  const observer = new IntersectionObserver(handleIntersect, options);
-  observer.observe(text1.value);
-  observer.observe(text2.value);
-  observer.observe(image1.value);
-  observer.observe(image2.value);
+const options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.5,
+};
+const observer = new IntersectionObserver(handleIntersect, options);
+observer.observe(text1.value);
+observer.observe(text2.value);
+
 });
-
 </script>
-
 <style scoped>
 
 @font-face { 
@@ -127,7 +102,6 @@ left: 50%;
 transform: translateX(-50%);
 width: 90vw;
 direction: rtl;
-text-align: right;
 height: 190vh;
 }
 
@@ -138,17 +112,19 @@ font-family: "Heebo";
 text-align: center;
 margin-top: 10vh;
 direction: rtl;
+
 }
 
 
 
 .titles-gray {
-font-size: 2.5em;
+font-size: 2.8em;
 margin-bottom: 2vh;
 direction: rtl;
 text-align: right;
 font-family: "karantina";
 color: rgb(89,89,89);
+text-align: right;
 }
 
 .simple-text {
@@ -157,6 +133,10 @@ height: auto;
 margin-bottom: 2vh;
 font-family: "Heebo";
 font-size: 1.2em;
+text-align: right;
+color: rgb(89,89,89);
+
+
 
 }
 
@@ -169,8 +149,9 @@ font-family: "Heebo-Black";
 color:rgb(28, 180, 227);
 width: 95vw;
 }
+
 .grey-bold {
-font-size: 1.3em;
+font-size: 1.2em;
 margin-bottom: 2vh;
 direction: rtl;
 text-align: right;
@@ -190,26 +171,9 @@ animation: fadeIn 1s ease;
 }
 
 
-@keyframes bounce2 {
-  0% {
-      top: 180vh; /* Adjusted initial position */
-  }
-  50%{
-    top: 185vh; /* Adjusted midpoint position */
-  }
-  100%{
-    top: 180vh; /* Adjusted final position */
-  }
-}
 
-#next-wBtn{
-position:absolute;
-z-index: 5;
-right:50%;
-transform: translateX(50%);
-top:150vh; /* Adjusted position */
-animation: bounce2 2s ease infinite; 
-}
+
+
 .animate {
 animation: fadeIn 1s ease;
 }
@@ -230,4 +194,31 @@ width: 100%;
 height: auto;
 margin-bottom: 2vh;
 }
+.brand{
+  height:auto;
+  width:15vw
+}
+#site-link{
+  font-size:1.3em; ;
+  font-family: "Heebo";
+  color:rgb(28, 180, 227);
+  text-decoration: underline; /* Add underline */
+}
+#video{
+width:90vw;
+height: auto;
+}
+
+.button{
+  background-color: rgb(28, 180, 227);
+  border-radius: 50px;
+  width:60vw;
+  height:7vh;
+  font-size: 1.5em;
+  font-family: "Heebo-black";
+}
+#link{
+  color:white
+}
+
 </style>

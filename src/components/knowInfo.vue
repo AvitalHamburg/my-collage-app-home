@@ -5,6 +5,7 @@
               <p ref="text1" class="grey-bold-text">כך נוצר מעגל ההכשרה השלם, המאפשר לנו לפגוש בבית אחד כמה שיותר בעלי תפקידים המנהלים מצבי חירום בתחומם</p>
               <!-- <img id="collageGif" src="../assets/imgs/collageGif.gif" alt="Collage Image">  להוסיף כאן גיף-->
               <div id="gif" ref="image1">מופיע כאן גיף</div>
+              <p class="simple-text">אנחנו מייצרים פה שפה אחודה ומקדמים שיתופי פעולה עם מובילים מקצועיים ממשרדי הממשלה השונים, מרכז השלטון המקומי והאזורי, ארגוני חירום והצלה, מוסדות אקדמאים וארגונים מהחברה האזרחית. </p>
               <p ref="text2"class="simple-text-big">בראשות המכללה ניצבת מפקדת בדרגת אל"ם ולרשותה מטה מקצועי המורכב ממשרתי קבע, מילואים ויועצים. סגל המרצים כולל מומחים מקצועיים מפיקוד העורף, רח"ל, משרדי הממשלה, המינהל הציבורי והאקדמיה.
               </p>
               <img class="image-content" :src="infoCollage1">
@@ -26,8 +27,6 @@
 
 <script setup>
 import { reactive, onMounted, getCurrentInstance ,defineEmits, ref} from 'vue';
-import orange from "../assets/imgs/orange.png";
-import collageGif from '../assets/imgs/collageGif.gif';
 import nextBtn from "../assets/imgs/nextBtn.png";
 import infoCollage1 from "../assets/imgs/infoCollage1.jpg";
 import firefighters from "../assets/imgs/firefighters.jpg";
@@ -145,6 +144,8 @@ height: auto;
 margin-bottom: 2vh;
 font-family: "Heebo";
 font-size: 1.2em;
+color: rgb(89,89,89);
+
 
 }
 .simple-text-big {
@@ -153,6 +154,8 @@ height: auto;
 margin-bottom: 2vh;
 font-family: "Heebo";
 font-size: 1.4em;
+color: rgb(89,89,89);
+
 
 }
 
@@ -233,6 +236,8 @@ animation: bounce 2s ease infinite;
   width:90vw;
   height:20vh;
   background-color: aliceblue;
+  color: rgb(89,89,89);
+
 
 }
 

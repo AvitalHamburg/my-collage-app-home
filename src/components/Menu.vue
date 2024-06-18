@@ -156,6 +156,8 @@ const moveToPage = (index) => {
   font-size: 1.2em;
   direction: rtl;
   font-weight:-700;
+  color: rgb(89, 89, 89);
+
   
 }
 #intro1{
@@ -168,6 +170,8 @@ const moveToPage = (index) => {
   font-size: 1.2em;
   direction: rtl;
   font-weight:700;
+  color: rgb(89, 89, 89);
+
 }
 .selected-btn {
     background-color: grey;

@@ -182,7 +182,7 @@ height: auto;
 margin-bottom: 2vh;
 font-family: "Heebo";
 font-size: 1.2em;
-
+color: rgb(89,89,89);
 }
 
 .blue-text {
