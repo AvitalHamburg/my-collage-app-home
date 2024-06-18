@@ -18,12 +18,15 @@
    </header>
 
     <Menu v-if="state.showMenu" :visitedMenuPage="state.visitedPages" @go-next="movePage"></Menu>
-    <KnowCollage v-if="state.textNum === 1" @go-menu="backToMenu"></KnowCollage>
-    <ActiveCollage v-if="state.textNum === 2" @go-menu="backToMenu"></ActiveCollage>
-    <SocityCollage v-if="state.textNum === 3" @go-menu="backToMenu"></SocityCollage>
-    <LibraryCollage v-if="state.textNum === 4" @go-menu="backToMenu"></LibraryCollage>
-    <OutsideCollage v-if="state.textNum === 5" @menu-back="backToMenu"></OutsideCollage>
-    <LocationCollage v-if="state.textNum === 6"></LocationCollage>
+    <KnowCollage v-if="state.textNum === 1" @go-menu="nextSubj"></KnowCollage>
+    <ActiveCollage v-if="state.textNum === 2" @go-menu="nextSubj"></ActiveCollage>
+    <SocityCollage v-if="state.textNum === 3" @go-menu="nextSubj"></SocityCollage>
+    <LibraryCollage v-if="state.textNum === 4" @go-menu="nextSubj"></LibraryCollage>
+    <OutsideCollage v-if="state.textNum === 5" @go-menu="nextSubj"></OutsideCollage>
+    <LocationCollage v-if="state.textNum === 6"  @go-menu="nextSubj"></LocationCollage>
+    <LocationCollage v-if="state.textNum === 6"  @go-menu="nextSubj"></LocationCollage>
+    <Game v-if="state.textNum === 7"  @go-menu="backToMenu"></Game>
+
     <div class="overlay" v-if="state.openHamburger" @click="showHamburger">
     </div>
     <Hamburger 
@@ -37,7 +40,7 @@
 <script setup>
 import { reactive } from 'vue';
 import Menu from './components/Menu.vue';
-import Payment from './components/SocityNext.vue';
+import Game from './components/Game.vue';
 import Hamburger from './components/Hamburger.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import KnowCollage from './components/KnowCollage.vue';
@@ -73,9 +76,14 @@ const movePage = (number) => {
   state.visitedPages.push(number-1);
 }
 
-const backToMenu = () => {
+const nextSubj = () => {
   state.textNum++;
 }
+
+const backToMenu = () =>{
+      state.showMenu=true;
+}
+
 const showHamburger = () =>{
       state.openHamburger = !state.openHamburger;
 }

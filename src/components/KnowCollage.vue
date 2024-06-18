@@ -28,9 +28,7 @@
 
 <script setup>
 import { reactive, onMounted, getCurrentInstance ,defineEmits, ref} from 'vue';
-import VideoPage from './VideoPage.vue';
 import knowInfo from './knowInfo.vue';
-import orange from "../assets/imgs/orange.png";
 import ImgCollage from '../assets/imgs/11ImgCollage.jpg';
 import nextBtn from "../assets/imgs/nextBtn.png";
 
